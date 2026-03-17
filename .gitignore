@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+release/
+
+# Database files (user data)
+*.db
+*.sqlite
+data/
+
+# Development one-shot scripts
+scripts/_law_patch_*.js
+scripts/_fix_holiday_seeds.js
+tmp_*.py
+tmp_*.js
+
+# AI tooling working directories
+.claude/
+.autonomous/
+.aider*
+.cursor/
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Local env
+.env
+.env.local

@@ -1,0 +1,45 @@
+{
+  "name": "firm-tool",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Offline accountant office desktop assistant",
+  "author": "Accounting Firm",
+  "main": "dist/main/main.js",
+  "scripts": {
+    "build": "npm.cmd run clean && npm.cmd run build:main && npm.cmd run build:preload && npm.cmd run build:renderer",
+    "build:main": "tsc -p tsconfig.main.json",
+    "build:preload": "tsc -p tsconfig.preload.json",
+    "build:renderer": "vite build",
+    "clean": "powershell -Command \"if (Test-Path dist) { Remove-Item -Recurse -Force dist }\"",
+    "dev": "concurrently \"npm.cmd run dev:renderer\" \"npm.cmd run dev:electron\"",
+    "dev:electron": "wait-on tcp:5173 file:dist/preload/preload.js && tsx watch src/main/main.ts",
+    "dev:renderer": "vite",
+    "dist": "npm.cmd run build && node_modules/.bin/electron-builder.cmd --config electron-builder.json",
+    "dist:zip": "npm.cmd run build && node_modules/.bin/electron-builder.cmd --config electron-builder.json --win zip",
+    "import-registry": "tsx scripts/import-company-registry.ts",
+    "test": "vitest run --config vitest.config.mjs",
+    "test:watch": "vitest --config vitest.config.mjs",
+    "typecheck": "tsc -p tsconfig.main.json --noEmit && tsc -p tsconfig.preload.json --noEmit && tsc -p tsconfig.renderer.json --noEmit"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.11",
+    "better-sqlite3": "^11.8.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.7",
+    "@types/node": "^24.0.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.4.1",
+    "concurrently": "^9.1.2",
+    "electron": "^35.0.0",
+    "electron-builder": "^25.1.8",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "vite": "^6.2.0",
+    "vitest": "^3.1.1",
+    "wait-on": "^8.0.3"
+  }
+}
