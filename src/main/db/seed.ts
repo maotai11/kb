@@ -1,4 +1,5 @@
 import type Database from 'better-sqlite3';
+import { seedMojLawCards } from './seedMojLaws';
 
 type ParamSeed = {
   fiscalYear: number;
@@ -11532,4 +11533,5 @@ export function seedBaselineData(db: Database): void {
   });
 
     seedTransaction();
+  seedMojLawCards(db);
   }

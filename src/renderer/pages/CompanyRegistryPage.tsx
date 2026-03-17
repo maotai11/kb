@@ -43,7 +43,7 @@ export function CompanyRegistryPage() {
 
   return (
     <CalcPageLayout
-      title="company_registry"
+      title="公司登記查詢"
       subtitle="統編精查與公司名稱模糊搜尋（FTS5）"
       yearControl={<span className="field-label">FTS search</span>}
       inputPanel={
@@ -69,10 +69,10 @@ export function CompanyRegistryPage() {
           ) : results.length ? (
             <div className="company-table">
               <div className="company-row company-heading">
-                <span>Tax ID</span>
-                <span>Company name</span>
-                <span>Status</span>
-                <span>Representative</span>
+                <span>統一編號</span>
+                <span>公司名稱</span>
+                <span>狀態</span>
+                <span>負責人</span>
               </div>
               {results.map((row) => (
                 <div className="company-row" key={row.rowid}>
@@ -84,7 +84,7 @@ export function CompanyRegistryPage() {
               ))}
             </div>
           ) : query.length >= 2 ? (
-            <p>No matches yet.</p>
+            <p>查無資料。首次查詢需連線至 GCIS，查詢過的公司會快取於本機。</p>
           ) : (
             <p>輸入統編或公司名稱開始搜尋。</p>
           )}
